@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="panel flex flex-col top-0 justify-center items-center h-screen relative">
+    <h1 class="m-4 text-3xl font-extrabold uppercase !leading-snug text-primary md:text-4xl">Faîtes votre choix</h1>
+    <div class="text-center mt-20 flex space-x-4">
+        <button onclick="window.location.href='{{ path('app_produit_incremente_quantite', {id:id}) }}'" class="comic-button inline-block px-5 py-2.5 text-2xl font-bold text-center text-white bg-purple-500 border-2 border-black rounded-lg shadow-shadow-custom hover:shadow-shadow-hover hover:bg-white hover:text-purple-500 hover:border-purple-500 active:shadow-none active:translate-y-1 transition-all duration-300 ease-in-out cursor-pointer">
+            Incrémenter la quantité
+        </button>
+        <button onclick="window.location.href='{{ path('app_produit_decremente_quantite', {id:id}) }}'" class="comic-button inline-block px-5 py-2.5 text-2xl font-bold text-center text-white bg-purple-500 border-2 border-black rounded-lg shadow-shadow-custom hover:shadow-shadow-hover hover:bg-white hover:text-purple-500 hover:border-purple-500 active:shadow-none active:translate-y-1 transition-all duration-300 ease-in-out cursor-pointer">
+            Décrémenter la quantité
+        </button>
+    </div>
+</div>
+{% endblock %}

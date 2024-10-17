@@ -1,0 +1,66 @@
+<div{{ attributes }}>
+    <div class="panel">
+        <div class="flex justify-between text-center align-middle mb-2">
+            <h1 class="text-2xl font-bold">{{ titre }}</h1>
+            {% if actionButton is defined and actionButton is not null and titreBouton is defined and titreBouton is not null %}
+                <a href="{{ path(actionButton) }}" class="inline-flex justify-center">
+                    <button class="w-40 h-12 bg-white cursor-pointer rounded-xl border border-[#D6BBFB] text-[#D6BBFB] shadow-[inset_0px_-2px_0px_1px_#D6BBFB] group hover:bg-[#D6BBFB] hover:text-white transition duration-300 ease-in-out">
+                        <span class="font-medium group-hover:text-white">{{ titreBouton }}</span>
+                    </button>
+                </a>
+            {% endif %}
+        </div>
+        <div class="table-responsive space-y-5">
+            <table>
+                <thead>
+                    <tr>
+                        {% for th in listeTh %}
+                            <th>{{ th }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in listeObjets %}
+                        <tr>
+                            {% for attribut in listeAttributs %}
+                                {% if is_date_time(attribute(item, attribut)) %}
+                                    <td>{{ attribute(item, attribut)|date('d/m/Y', 'Europe/Paris') }}</td>
+                                {% elseif is_list(attribute(item, attribut)) %}
+                                    <td>
+                                        <ul>
+                                            {% for elt in attribute(item, attribut) %}
+                                                <li>{{elt.nom}}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </td>
+                                {% else %}
+                                    <td>{{ attribute(item, attribut) }}</td>
+                                {% endif %}
+                            {% endfor %}
+                            {% if listeAttributs|length < listeTh|length %}
+                                <td>
+                                    <div class="flex w-full h-full">
+                                        {% if urlModif is defined %}
+                                            <twig:Modif url="{{urlModif}}" id="{{item.id}}"/>
+                                        {% endif %}
+                                        {% if item.prets is defined and item.prets|length > 0 or item.produits is defined and item.produits|length > 0 %}
+                                            {% set supprimable = false %}
+                                        {% else %}
+                                            {% set supprimable = true %}
+                                        {% endif %}
+                                        {% if urlSupp is defined and supprimable %}
+                                            <twig:FormDelete url="{{urlSupp}}" id="{{item.id}}" />
+                                        {% endif %}
+                                    </div>
+                                </td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% if entityType != 'produit' %}
+                {{ knp_pagination_render(listeObjets) }}
+            {% endif %}
+        </div>
+    </div>
+</div>

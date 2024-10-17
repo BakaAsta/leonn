@@ -1,0 +1,59 @@
+version: "3.7"
+services:
+  db:
+    image: mysql
+    container_name: db_docker_symfony
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    networks:
+      dev:
+        ipv4_address: 172.21.0.4
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin_docker_symfony
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - "8180:80"
+    environment:
+      PMA_HOST: db
+    networks:
+      dev:
+        ipv4_address: 172.21.0.6
+  maildev:
+    image: maildev/maildev
+    container_name: maildev_docker_symfony
+    command: bin/maildev --web 80 --smtp 25 --hide-extensions STARTTLS
+    ports:
+      - "8081:80"
+    restart: always
+    networks:
+      dev:
+        ipv4_address: 172.21.0.5 
+  typesense:
+    image: typesense/typesense:26.0
+    container_name: typesense_docker_symfony
+    restart: on-failure
+    ports:
+      - "8108:8108"
+    volumes:
+      - typesense-data:/data
+    command: '--data-dir /data --api-key=xyz --enable-cors'
+    networks:
+      dev:
+        ipv4_address: 172.21.0.7
+networks:
+  dev:
+    ipam:
+      config:
+        - subnet: 172.21.0.0/24
+volumes:
+  db-data:
+  typesense-data:
+  

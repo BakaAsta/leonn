@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+{# <div class="panel">
+    <h1 class="text-2xl font-bold">{{ titre }}</h1>
+    {{form(form)}}
+</div> #}
+
+{{ component('FormCretionEditionEntiteComponent', {
+        form: form,
+        flow: flow, 
+        typeForm: 'creationUser',
+        }) }}
+{% endblock %}

@@ -1,0 +1,120 @@
+{# <div{{ attributes }}>
+
+    <div class="flex justify-center "> <!-- Assurez-vous que le parent prend toute la hauteur -->
+        <div class="p-6 max-w-md">
+            <div role="alert" class="rounded-xl border border-gray-100 bg-white p-4">
+                <div class="flex items-start gap-4">
+                    {% if type == 'success' %}
+                    <span class="text-green-600">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="h-6 w-6"
+                    >
+                        <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                    </svg>
+                    </span>
+                    {% elseif type == 'warning' %}
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 128 128"><path fill="#F2A600" d="m57.16 8.42l-52 104c-1.94 4.02-.26 8.85 3.75 10.79c1.08.52 2.25.8 3.45.81h104c4.46-.04 8.05-3.69 8.01-8.15a8.123 8.123 0 0 0-.81-3.45l-52-104a8.067 8.067 0 0 0-14.4 0"/><path fill="#FFCC32" d="m53.56 15.72l-48.8 97.4c-1.83 3.77-.25 8.31 3.52 10.14c.99.48 2.08.74 3.18.76h97.5a7.55 7.55 0 0 0 7.48-7.62a7.605 7.605 0 0 0-.78-3.28l-48.7-97.4a7.443 7.443 0 0 0-9.93-3.47a7.484 7.484 0 0 0-3.47 3.47"/><path fill="#424242" d="M64.36 34.02c4.6 0 8.3 3.7 8 8l-3.4 48c-.38 2.54-2.74 4.3-5.28 3.92a4.646 4.646 0 0 1-3.92-3.92l-3.4-48c-.3-4.3 3.4-8 8-8m0 64c3.31 0 6 2.69 6 6s-2.69 6-6 6s-6-2.69-6-6s2.69-6 6-6" opacity=".2"/><linearGradient id="notoWarning0" x1="68" x2="68" y1="-1808.36" y2="-1887.05" gradientTransform="matrix(1 0 0 -1 -3.64 -1776.09)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#424242"/><stop offset="1" stop-color="#212121"/></linearGradient><path fill="url(#notoWarning0)" d="M64.36 34.02c4.6 0 8.3 3.7 8 8l-3.4 48c-.38 2.54-2.74 4.3-5.28 3.92a4.646 4.646 0 0 1-3.92-3.92l-3.4-48c-.3-4.3 3.4-8 8-8"/><linearGradient id="notoWarning1" x1="64.36" x2="64.36" y1="-1808.36" y2="-1887.05" gradientTransform="matrix(1 0 0 -1 0 -1772.11)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#424242"/><stop offset="1" stop-color="#212121"/></linearGradient><circle cx="64.36" cy="104.02" r="6" fill="url(#notoWarning1)"/><path fill="#FFF170" d="M53.56 23.02c-1.2 1.5-21.4 41-21.4 41s-1.8 3 .7 4.7c2.3 1.6 4.4-.3 5.3-1.8s19.2-36.9 19.9-38.6c.6-1.87.18-3.91-1.1-5.4c-1.3-1.2-2.6-1-3.4.1"/><circle cx="31.36" cy="75.33" r="3.3" fill="#FFF170"/></svg>
+                        </span>
+                    {% elseif type == 'danger' %}
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 36 36"><path fill="#DD2E44" d="M21.533 18.002L33.768 5.768a2.5 2.5 0 0 0-3.535-3.535L17.998 14.467L5.764 2.233a2.498 2.498 0 0 0-3.535 0a2.498 2.498 0 0 0 0 3.535l12.234 12.234L2.201 30.265a2.498 2.498 0 0 0 1.768 4.267c.64 0 1.28-.244 1.768-.732l12.262-12.263l12.234 12.234a2.493 2.493 0 0 0 1.768.732a2.5 2.5 0 0 0 1.768-4.267z"/></svg>
+                        </span>
+                    {% elseif type == 'info' %}
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 48 48"><circle cx="24" cy="24" r="21" fill="#2196F3"/><path fill="#fff" d="M22 22h4v11h-4z"/><circle cx="24" cy="16.5" r="2.5" fill="#fff"/></svg>
+                        </span>
+                    {% endif %}
+
+                    <div class="flex-1">
+                        <strong class="block font-medium text-gray-900"> {{type}} </strong>
+                        <p class="mt-1 text-sm text-gray-700">{{message}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div> #}
+
+<div{{ attributes }}>
+
+    <div class="flex justify-center "> <!-- Assurez-vous que le parent prend toute la hauteur -->
+        <div class="p-6 max-w-md">
+            <div role="alert" class="rounded-2xl border border-blue-100 bg-white p-4 shadow-lg sm:p-6 lg:p-8">
+                <div class="flex items gap-4">
+                    {% if type == 'success' %}
+                    <span class="shrink-0 rounded-full bg-green-600 p-2 text-white" role='alert'>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            class="h-4 w-4"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                            />
+                        </svg>
+                    </span>
+                    {% elseif type == 'warning' %}
+                    <span class="shrink-0 rounded-full  text-white" role='alert'>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 128 128">
+                            <path fill="#FFF170" d="M53.56 23.02c-1.2 1.5-21.4 41-21.4 41s-1.8 3 .7 4.7c2.3 1.6 4.4-.3 5.3-1.8s19.2-36.9 19.9-38.6c.6-1.87.18-3.91-1.1-5.4c-1.3-1.2-2.6-1-3.4.1"/>
+                            <circle cx="31.36" cy="75.33" r="3.3" fill="#FFF170"/>
+                            <path fill="#424242" d="M64.36 34.02c4.6 0 8.3 3.7 8 8l-3.4 48c-.38 2.54-2.74 4.3-5.28 3.92a4.646 4.646 0 0 1-3.92-3.92l-3.4-48c-.3-4.3 3.4-8 8-8"/>
+                        </svg>
+                    </span>
+                    {% elseif type == 'danger' %}
+                    <span class="shrink-0 rounded-full p-2 text-white" role='alert'>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 36 36">
+                            <path fill="#DD2E44" d="M21.533 18.002L33.768 5.768a2.5 2.5 0 0 0-3.535-3.535L17.998 14.467L5.764 2.233a2.498 2.498 0 0 0-3.535 0a2.498 2.498 0 0 0 0 3.535l12.234 12.234L2.201 30.265a2.498 2.498 0 0 0 1.768 4.267c.64 0 1.28-.244 1.768-.732l12.262-12.263l12.234 12.234a2.493 2.493 0 0 0 1.768.732a2.5 2.5 0 0 0 1.768-4.267z"/>
+                        </svg>
+                    </span>
+                    {% elseif type == 'info' %}
+                    <span class="shrink-0 rounded-full  text-white" role='alert'>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 48 48">
+                            <circle cx="24" cy="24" r="21" fill="#2196F3"/>
+                            <path fill="#fff" d="M22 22h4v11h-4z"/>
+                            <circle cx="24" cy="16.5" r="2.5" fill="#fff"/>
+                        </svg>
+                    </span>
+                    {% endif %}
+
+                    <div class="flex-1">
+                        <p class="font-medium sm:text-lg">{{ type|capitalize }}</p>
+                        <p class="mt-4 text-gray-500">{{ message }}</p>
+                    </div>
+                </div>
+
+                <div class="mt-6 sm:flex sm:gap-4">
+                    <a
+                        class="inline-block w-full rounded-lg bg-blue-500 px-5 py-3 text-center text-sm font-semibold text-white sm:w-auto"
+                        href="#"
+                        >
+                        Marquer comme lu
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Disparaître automatiquement après quelques secondes
+        setTimeout(function () {
+            document.getElementById('flash-message').remove();
+        }, 5000); // Changez 5000 en nombre de millisecondes désiré (par exemple, 5000 pour 5 secondes)
+    </script>
+</div>

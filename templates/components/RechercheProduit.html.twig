@@ -1,0 +1,139 @@
+<div{{ attributes }}>
+    <div class="panel">
+        <div class="flex justify-between text-center align-middle mb-2">
+            <h1 class="text-2xl font-bold">Liste des produits</h1>
+            <input
+                type="search"
+                name="produitRecherche"
+                data-model="produitRecherche"
+            >
+            <input
+                name="page"
+                data-model="page"
+                id="pageInput"
+                type="hidden"
+            >
+            <input 
+                name="attributTri"
+                data-model="attributTri"
+                id="attributTriInput">
+            <input
+                name="directionTri"
+                data-model="directionTri"
+                id="directionTriInput"
+            >
+            {# <input
+                name="nbpage"
+                data-model="nbpage"
+            > #}
+            <a href="{{ path('app_produit_ajouter') }}" class="inline-flex justify-center">
+                <button class="w-40 h-12 bg-white cursor-pointer rounded-xl border border-[#D6BBFB] text-[#D6BBFB] shadow-[inset_0px_-2px_0px_1px_#D6BBFB] group hover:bg-[#D6BBFB] hover:text-white transition duration-300 ease-in-out">
+                    <span class="font-medium group-hover:text-white">Ajouter un produit</span>
+                </button>
+            </a>
+        </div>
+        <div class="table-responsive">
+            <table class="mb-5">
+                <thead>
+                    <tr>
+                        {% for i in 0..(this.data.liste_th|length - 1) %}
+                            <th>
+                                <button onclick="replaceValuePaginator(this.data.listeAttribut[i], 'attributTriInput')">{{ this.data.liste_th[i] }}</button>
+                            </th>
+                        {% endfor %}
+                        {# {% for item in this.data.liste_th %}
+                            <th>
+                                <button onclick="replaceValuePaginator({{item}}, 'attributTriInput')">{{ item }}</button>
+                            </th>
+                        {% endfor %} #}
+                        {# <th>Nom</th>
+                        <th>Référence Interne</th>
+                        <th>Référence Fabricant</th>
+                        <th>Marque</th>
+                        <th>Quantité</th>
+                        <th>Type de produit</th>
+                        <th>Categorie</th>
+                        <th>En Stock</th>
+                        <th>Date de rebus</th>
+                        <th>Commentaire</th>
+                        <th>Dernière modification</th>
+                        <th class="flex justify-center items-center w-full h-full">Actions</th>  #}
+                        {# {% for i in 0..(this.data.liste_th|length - 1) %}
+                        {% if this.data.liste_th[i] == 'Actions' or this.data.liste_th[i] == 'Liste des produits' %}
+                            <th>{{ this.data.liste_th[i] }}</th>
+                        {% else %}
+                        {% set th = this.data.liste_th[i] %}
+                        {% set attr = this.data.listeAttributs[i] %}
+                             <th>{{ listeObjets.getDirection() }}</th>  
+                            <th class="cursor-pointer hover:text-blue-500"
+                                {% if this.data.produits.isSorted(attr) %}
+                                    class="sorted"
+                                {% endif %}>
+                                <div class="flex items-center space-x-2">
+                                    {{ knp_pagination_sortable(this.data.produits, this.data.liste_th[i], attr) }}
+                                    {% if this.data.produits.isSorted(attr) %}
+                                        {% if this.data.produits.getDirection() == 'desc' %}
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" class="ml-1"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14m6-6l-6 6m-6-6l6 6"/></svg>
+                                        {% else %}
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m12 5l6 6m-6-6l-6 6m6-6v14"/></svg>
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                            </th>
+                        {% endif %}
+                    {% endfor %}  #}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in this.data.produits %}
+                        <tr>
+                            <td>{{ p.nom }}</td>
+                            <td>{{ p.refInterne }}</td>
+                            <td>{{ p.refFabricant }}</td>
+                            <td>{{ p.marque ? p.marque : '' }}</td>
+                            <td>{{p.quantite}}</td>
+                            <td>
+                                {% if p.typeProduit %}
+                                    {% for attribute in p.typeProduit %}
+                                        {% if attribute == 'Immo' %}
+                                            <span class="btn rounded-lg text-[#66E2AC] hover:bg-[#66E2AC] hover:text-white border-[#66E2AC]" style="margin-right: 5px; padding: 5px; display: inline-block;">
+                                                {{ attribute }}
+                                            </span>
+                                        {% elseif attribute == 'Pret' %}
+                                            <span class="btn rounded-lg text-[#87CEEB] hover:bg-[#87CEEB] hover:text-white border-[#87CEEB]" style="margin-right: 5px; padding: 5px; display: inline-block;">
+                                                {{ attribute }}
+                                            </span>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            </td>
+                            <td>{{ p.categories ? (p.categories | map(attribute => attribute)) | join(', ') : '' }}</td>
+                            <td class="text-center align-middle">
+                                 {% if p.rebus or p.prets|length != 0 %}
+                                    <i class="fas fa-times text-red-500"></i> <!-- Croix rouge pour 'Non' -->
+                                {% else %}
+                                    <i class="fas fa-check text-green-500"></i> <!-- Coche verte pour 'Oui' -->
+                                {% endif %}
+                            </td>
+                            {% if p.dateRebus is defined and p.dateRebus is not null %}
+                                <td>{{ p.dateRebus|date('d/m/Y') }}</td>
+                            {% else %}
+                                <td></td>
+                            {% endif %}
+                            
+                            <td>{{ p.commentaire }}</td>
+                            <td>{{ p.updatedAt ? p.updatedAt|date('d/m/Y H:i') : '' }}</td>
+                            <td>
+                                <div class="flex justify-center items-center w-full h-full">
+                                    <twig:Modif url="app_produit_editer" id="{{p.id}}"/>
+                                    <twig:FormDelete url="app_produit_delete" id="{{p.id}}" />
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% include "components/common/paginatorLive.html.twig" %}
+        </div>
+    </div>
+</div>

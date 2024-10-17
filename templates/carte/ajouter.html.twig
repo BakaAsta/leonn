@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+ {{ component('FormCretionEditionEntiteComponent', {
+        form: form,
+        flow: flow, 
+        typeForm: 'creationCarte',
+        carte: carte
+}) }}
+
+{% endblock %}

@@ -1,0 +1,20 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+
+auth:
+    path: /auth
+    methods: ['POST']
+
+api_refresh_token:
+    path: /api/token/refresh
+
+api_token_invalidate:
+    path: /api/token/invalidate
+    
+
+# live_components:
+#     resource: '@LiveComponentBundle/Resources/config/routing/live_component.xml'
+    

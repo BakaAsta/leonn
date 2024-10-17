@@ -1,0 +1,53 @@
+site_name: Documentation Leonn
+theme:
+  features:
+    - content.code.copy
+    - content.tooltips
+    - navigation.tracking
+  name: material
+  language: fr
+  logo: assets/ecir.png
+  palette: 
+
+  # Palette toggle for light mode
+  - scheme: default
+    toggle:
+      icon: material/brightness-7 
+      name: Mode Sombre
+
+  # Palette toggle for dark mode
+  - scheme: slate
+    toggle:
+      icon: material/brightness-4
+      name: Mode light
+extra:
+
+  consent:
+    title: Cookie consent
+    description: >- 
+      Nous utilisons des cookies pour reconnaître vos visites répétées et vos préférences, ainsi que pour mesurer l'efficacité de notre documentation et savoir si les utilisateurs trouvent ce qu'ils cherchent. Avec votre consentement, vous nous aidez à améliorer notre documentation.
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - footnotes
+  - def_list
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+plugins:
+  - glightbox
+  - search
+
+# nav:
+#   - Accueil: index.md
+#   - Création salarié et vacataire: creation.md
+#   - Ajouter une habilitation: habilitation.md
+#   - Créer un suivi: suivi.md
+#   - Gestion des établissement: etablissement.md
+#   - Recherche utilisateur ou suivi : recherche.md
+  
+copyright: Copyright &copy; 2023 ECIR

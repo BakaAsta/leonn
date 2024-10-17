@@ -1,0 +1,122 @@
+{# tailwindcss Sliding pagination control implementation #}
+{# {% if pageCount > 1 %}
+    <div class="dataTable-bottom">
+        <nav class="dataTable-pagination">
+            <ul class="dataTable-pagination-list">
+            
+            {% if first is defined and current != first %}
+                <li class="">
+                    <a href="{{ path(route, query|merge({(pageParameterName): first})) }}" class="rounded-full px-3 py-2 hover:bg-blue-500">««</a>
+                </li>
+            {% endif %}
+
+            {% if previous is defined %}
+                <li class="">
+                    <a rel="prev" href="{{ path(route, query|merge({(pageParameterName): previous})) }}" class="rounded-full px-3 py-2 hover:bg-blue-500">«</a>
+                </li>
+            {% endif %}
+
+            {% for page in pagesInRange %}
+                {% if page == current %}
+                    <li class="">
+                        <a href="{{ path(route, query|merge({(pageParameterName): page})) }}" class="rounded-full px-3 py-2 bg-blue-500 text-white">{{ page }}</a>
+                    </li>
+                {% else %}
+                    <li class="">
+                        <a href="{{ path(route, query|merge({(pageParameterName): page})) }}" class="rounded-full px-3 py-2 hover:bg-blue-500">{{ page }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+
+            {% if next is defined %}
+                <li class="">
+                    <a rel="next" href="{{ path(route, query|merge({(pageParameterName): next})) }}" class="rounded-full px-3 py-2 hover:bg-blue-500">»</a>
+                </li>
+            {% endif %}
+
+            {% if last is defined and current != last %}
+                <li class="">
+                    <a href="{{ path(route, query|merge({(pageParameterName): last})) }}" class="rounded-full px-3 py-2 hover:bg-blue-500">»»</a>
+                </li>
+            {% endif %}
+            </ul>
+        </nav>
+    </div>
+{% endif %} #}
+{# tailwindcss Sliding pagination control implementation #}
+
+{# {% if pageCount > 1 %}
+<div class="dataTable-bottom">
+    <nav class="dataTable-pagination">
+        <div class="inline-block">
+            <div class="flex items-baseline flex-row rounded-sm w-auto">
+            {% if first is defined and current != first %}
+                <span class="bg-white text-blue-600 px-3 py-2 text-lg  font-bold">
+                    <a href="{{ path(route, query|merge({(pageParameterName): first})) }}">&lt;&lt;</a>
+                </span>
+            {% endif %}
+
+            {% if previous is defined %}
+                <span class="bg-white text-blue-600 px-3 text-lg py-2 ">
+                    <a rel="prev" href="{{ path(route, query|merge({(pageParameterName): previous})) }}">&lt;</a>
+                </span>
+            {% endif %}
+
+            {% for page in pagesInRange %}
+                {% if page != current %}
+                    <span class="bg-white text-blue-600 px-3 py-2 text-lg  ">
+                        <a href="{{ path(route, query|merge({(pageParameterName): page})) }}">{{ page }}</a>
+                    </span>
+                {% else %}
+                    <span class="pager bg-blue-600 text-white px-3 py-2 text-lg font-bold">{{ page }}</span>
+                {% endif %}
+            {% endfor %}
+
+            {% if next is defined %}
+                <span class="bg-white text-blue-600 px-3 py-2 text-lg ">
+                    <a rel="next" href="{{ path(route, query|merge({(pageParameterName): next})) }}">&gt;</a>
+                </span>
+            {% endif %}
+
+            {% if last is defined and current != last %}
+                <span class="bg-white text-blue-600 px-3 py-2 text-lg  font-bold">
+                    <a href="{{ path(route, query|merge({(pageParameterName): last})) }}">&gt;&gt;</a>
+                </span>
+            {% endif %}
+            </div>
+        </div>
+
+    </nav>
+</div>
+{% endif %} #}
+{% if pageCount > 1 %}
+<div class="dataTable-bottom">
+    <nav class="dataTable-pagination">
+        <div class="flex items-center justify-center space-x-2"> <!-- Ajustez l'espacement avec space-x-2 -->
+            {% if first is defined and current != first %}
+                <a href="{{ path(route, query|merge({(pageParameterName): first})) }}" class="rounded-full bg-white text-blue-600 px-4 py-2 text-lg font-bold hover:bg-blue-600 hover:text-white transition-colors">««</a>
+            {% endif %}
+
+            {% if previous is defined %}
+                <a rel="prev" href="{{ path(route, query|merge({(pageParameterName): previous})) }}" class="rounded-full bg-white text-blue-600 px-4 py-2 text-lg hover:bg-blue-600 hover:text-white transition-colors">«</a>
+            {% endif %}
+
+            {% for page in pagesInRange %}
+                {% if page != current %}
+                    <a href="{{ path(route, query|merge({(pageParameterName): page})) }}" class="rounded-full bg-white text-blue-600 px-4 py-2 text-lg hover:bg-blue-600 hover:text-white transition-colors">{{ page }}</a>
+                {% else %}
+                    <span class="rounded-full bg-blue-600 text-white px-4 py-2 text-lg">{{ page }}</span>
+                {% endif %}
+            {% endfor %}
+
+            {% if next is defined %}
+                <a rel="next" href="{{ path(route, query|merge({(pageParameterName): next})) }}" class="rounded-full bg-white text-blue-600 px-4 py-2 text-lg hover:bg-blue-600 hover:text-white transition-colors">»</a>
+            {% endif %}
+
+            {% if last is defined and current != last %}
+                <a href="{{ path(route, query|merge({(pageParameterName): last})) }}" class="rounded-full bg-white text-blue-600 px-4 py-2 text-lg font-bold hover:bg-blue-600 hover:text-white transition-colors">»»</a>
+            {% endif %}
+        </div>
+    </nav>
+</div>
+{% endif %}

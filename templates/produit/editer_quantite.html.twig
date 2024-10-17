@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+    {{ component('FormCretionEditionEntiteComponent', {
+        form: form,
+        flow: flow, 
+        typeForm: 'incrementeDecrementeQuantite',
+        quantiteActuelle: quantiteActuelle,
+        route: route,
+        }) }}
+{% endblock %}
+

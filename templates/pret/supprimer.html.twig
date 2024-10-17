@@ -1,0 +1,7 @@
+<form method="post" action="{{ path('app_pret_delete', {'id': p.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ p.id) }}">
+    <button class="text-slate-800 hover:text-white text-sm bg-white hover:bg-red-400 border border-slate-200 rounded-r-lg font-medium px-4 py-2 inline-flex space-x-1 items-center">
+        <twig:Delete />
+    </button>
+</form>
+

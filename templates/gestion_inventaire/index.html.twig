@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<h1 class="text-2xl font-bold">{{ titre }}</h1>
+
+<div class="panel flex justify-center items-center h-screen">
+    <div class=" text-center">   
+        {{ form_start(form, {action: path('app_gestion_inventaire')}) }}
+            <div class="mb-10">
+                {{ form_row(form.sauvegarder) }}
+            </div>
+            <div class="mb-5">
+                {{ form_row(form.reference) }}
+            </div>
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}

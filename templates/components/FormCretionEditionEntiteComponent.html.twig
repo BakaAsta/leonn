@@ -1,0 +1,467 @@
+<div{{ attributes }}>
+    <div class="main-container min-h-screen text-black dark:text-white-dark">
+        <div x-data="auth">
+            <div class="absolute inset-0">
+            </div>
+            <div
+                class="relative flex min-h-screen items-center justify-center bg-[url(../images/auth/map.png)] bg-cover bg-center bg-no-repeat px-6 py-10 dark:bg-[#060818] sm:px-16"
+            >
+                <img src="{{ asset('assets/images/auth/coming-soon-object1.png') }}" alt="image" class="absolute left-0 top-1/2 h-full max-h-[893px] -translate-y-1/2" />
+                <img src="{{ asset('assets/images/auth/coming-soon-object2.png') }}" alt="image" class="absolute left-24 top-0 h-40 md:left-[30%]" />
+                <img src="{{ asset('assets/images/auth/coming-soon-object3.png') }}" alt="image" class="absolute right-0 top-0 h-[300px]" />
+                <img src="{{ asset('assets/images/auth/polygon-object.svg') }}" alt="image" class="absolute bottom-0 end-[28%]" />
+                <div
+                    class="relative flex w-full max-w-[1502px] flex-col justify-between overflow-hidden rounded-md bg-white/60 backdrop-blur-lg dark:bg-black/50 lg:min-h-[758px] lg:flex-row lg:gap-10 xl:gap-0"
+                >
+                    <div
+                        class="relative hidden w-full items-center justify-center bg-[linear-gradient(225deg,rgba(239,18,98,1)_0%,rgba(67,97,238,1)_100%)] p-5 lg:inline-flex lg:max-w-[835px] xl:-ms-32 ltr:xl:skew-x-[14deg] rtl:xl:skew-x-[-14deg]"
+                    >
+                        <div
+                            class="absolute inset-y-0 w-8 from-primary/10 via-transparent to-transparent ltr:-right-10 ltr:bg-gradient-to-r rtl:-left-10 rtl:bg-gradient-to-l xl:w-16 ltr:xl:-right-20 rtl:xl:-left-20"
+                        ></div>
+                        <div class="ltr:xl:-skew-x-[14deg] rtl:xl:skew-x-[14deg]">
+                            {% include 'components/Flow/stepList.html.twig' %}
+                        </div>
+                    </div>
+                    <div class="relative flex w-full flex-col items-center justify-center gap-6 px-4 pb-16 pt-6 sm:px-6 lg:max-w-[667px]">
+                        <div class="flex w-full max-w-[440px] items-center gap-2 lg:absolute lg:end-6 lg:top-6 lg:max-w-full">
+                            <a href="index.html" class="block w-8 lg:hidden">
+                                <img src="assets/images/auth/ecira.png" alt="Logo" class="w-full" />
+                            </a>
+                        </div>
+                        <div class="w-full max-w-[440px] lg:mt-16">
+                        {% if typeForm == 'creationProduit' %}
+                            <div class="mb-10">
+                                <h1 class="text-3xl font-extrabold uppercase !leading-snug text-primary md:text-4xl">Création de produit</h1>
+                                <p class="text-base font-bold leading-normal text-white-dark">Nous allons crée un produit en plusieurs étapes</p>
+                            </div>
+                            {{ form_start(form) }}
+                            <div class='space-y-4'>
+                                {{ form_errors(form) }}
+
+                                {% if flow.getCurrentStepNumber() == 1 %}
+                                    <div class="p-4">
+                                        <h1 class="text-xl font-bold mb-2">Produit</h1>
+                                        <div class="space-y-2">
+                                            <label for="gridNom">Nom</label>
+                                            {{ form_row(form.nom) }}
+                                        </div>
+                                        {% include 'components/Flow/buttons.html.twig' %}
+                                    </div>
+                                {% endif %}
+
+                                {% if flow.getCurrentStepNumber() == 2 %}
+                                    <div class='p-4'>
+                                        <h1 class="text-xl font-bold mb-2">Précision</h1>
+                                        <div class="mt-4 space-y-2">
+                                            <div class="form-group">
+                                                {{ form_row(form.typeProduit) }}
+                                            </div>
+                                        </div>
+                                        {% include 'components/Flow/buttons.html.twig' %}
+                                    </div>
+                                {% endif %}
+                                
+                                {% if flow.getCurrentStepNumber() == 3 %}
+                                    <div class='p-4'>
+                                        <h1 class="text-xl font-bold mb-2">Précision</h1>
+                                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                                            {{ form_row(form.categories) }}
+                                            {{ form_row(form.marque) }}
+                                        </div>
+                                        {% include 'components/Flow/buttons.html.twig' %}
+                                    </div>
+                                {% endif %}
+                                
+                                {% if flow.getCurrentStepNumber() == 4 %}
+                                    <div class='p-4 space-y-4'>
+                                        <h1 class="text-xl font-bold mb-2">Quantité</h1>
+                                        <p class="text-sm font-bold leading-normal text-white-dark">Si votre produit est un consommable, la quantité sera celle renseignée</p>
+                                        <p class="text-sm font-bold leading-normal text-white-dark">Si votre produit est un matériel de prêt, il sera dupliqué selon la quantité renseignée</p>
+                                        <p class="text-sm font-bold leading-normal text-white-dark">Vos type sont ci-dessous</p>
+                                        {% for attribute in flow.getFormData.typeProduit %}
+                                            {% if attribute == 'Immo' %}
+                                                <span class="btn rounded-lg text-[#66E2AC] hover:bg-[#66E2AC] hover:text-white border-[#66E2AC]" style="margin-right: 5px; padding: 5px; display: inline-block;">
+                                                    {{ attribute }}
+                                                </span>
+                                            {% elseif attribute == 'Pret' %}
+                                                <span class="btn rounded-lg text-[#87CEEB] hover:bg-[#87CEEB] hover:text-white border-[#87CEEB]" style="margin-right: 5px; padding: 5px; display: inline-block;">
+                                                    {{ attribute }}
+                                                </span>
+                                            {% elseif attribute == 'Affectation' %}
+                                                <span class="btn rounded-lg text-[#FFA500] border-[#FFA500] hover:bg-[#FFA500] hover:text-white py-1 px-3 inline-block text-center">
+                                                    Affectation
+                                                </span>
+                                            {% endif %}
+                                        {% endfor %}
+                                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                                            {{ form_row(form.quantite) }}
+                                        </div>
+                                        {% include 'components/Flow/buttons.html.twig' %}
+                                    </div>
+                                {% endif %}
+                                 {% if flow.getCurrentStepNumber() == 5 %}
+                                    <div class="items-center p-4">
+                                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                                            {{ form_row(form.commentaire) }}
+                                        </div>
+                                        {% include 'components/Flow/buttons.html.twig' %}
+                                    </div>
+                                {% endif %}
+                                {% if flow.getCurrentStepNumber() == 6 %}
+                                    <div class="items-center p-4">
+                                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                                            {{ form_row(form.refFabricant) }}
+                                        </div>
+                                        {% include 'components/Flow/buttons.html.twig' %}
+                                    </div>
+                                {% endif %}
+                                {% if flow.getCurrentStepNumber() == flow.getLastStepNumber() %}
+                                <div class="panel container relative flex flex-col justify-between h-full max-w-6xl px-10 mx-auto xl:px-0 mt-5">
+                                    <h2 class="mb-3 text-3xl font-extrabold leading-tight text-gray-900 text-center">Récapitulatif</h2>
+                                    <div class="flex flex-wrap mb-10 -mx-2">
+                                        <div class="w-full px-2 mb-4 sm:w-1/2">
+                                            <div class="relative h-full ml-0 mr-0 sm:mr-10">
+                                                <span class="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-indigo-500 rounded-lg"></span>
+                                                <div class="relative h-full p-5 bg-white border-2 border-indigo-500 rounded-lg flex flex-col justify-center text-center">
+                                                    <div class="flex items-center justify-center -mt-1">
+                                                        <h3 class="my-2 ml-3 text-lg font-bold text-gray-800">Nom</h3>
+                                                    </div>
+                                                    <p>{{ form.vars.value.nom }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="w-full px-2 mb-4 sm:w-1/2">
+                                            <div class="relative h-full ml-0 mr-0 sm:mr-10">
+                                                <span class="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-purple-500 rounded-lg"></span>
+                                                <div class="relative h-full p-5 bg-white border-2 border-purple-500 rounded-lg flex flex-col justify-center text-center">
+                                                    <div class="flex items-center justify-center -mt-1">
+                                                        <h3 class="my-2 ml-3 text-lg font-bold text-gray-800">Type de Produit</h3>
+                                                    </div>
+                                                    {% for type in form.vars.value.typeProduit %}
+                                                        <p>{{ type.nom }}</p>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="w-full px-2 mb-4 sm:w-1/2">
+                                            <div class="relative h-full ml-0 mr-0 sm:mr-10">
+                                                <span class="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-blue-400 rounded-lg"></span>
+                                                <div class="relative h-full p-5 bg-white border-2 border-blue-400 rounded-lg flex flex-col justify-center text-center">
+                                                    <div class="flex items-center justify-center -mt-1">
+                                                        <h3 class="my-2 ml-3 text-lg font-bold text-gray-800">Catégories</h3>
+                                                    </div>
+                                                    {% for cat in form.vars.value.categories %}
+                                                        <p>{{ cat.nom }}</p>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="w-full px-2 mb-4 sm:w-1/2">
+                                            <div class="relative h-full ml-0 mr-0 sm:mr-10">
+                                                <span class="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-yellow-400 rounded-lg"></span>
+                                                <div class="relative h-full p-5 bg-white border-2 border-yellow-400 rounded-lg flex flex-col justify-center text-center">
+                                                    <div class="flex items-center justify-center -mt-1">
+                                                        <h3 class="my-2 ml-3 text-lg font-bold text-gray-800">Marque</h3>
+                                                    </div>
+                                                    {% if form.vars.value.marque is not empty %}
+                                                        <p>{{ form.vars.value.marque }}</p>
+                                                    {% else %}
+                                                        <p>Pas de marque</p>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="w-full px-2 mb-4 sm:w-1/2">
+                                            <div class="relative h-full ml-0 mr-0 sm:mr-10">
+                                                <span class="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-green-500 rounded-lg"></span>
+                                                <div class="relative h-full p-5 bg-white border-2 border-green-500 rounded-lg flex flex-col justify-center text-center">
+                                                    <div class="flex items-center justify-center -mt-1">
+                                                        <h3 class="my-2 ml-3 text-lg font-bold text-gray-800">Quantité</h3>
+                                                    </div>
+                                                    <p>{{ form.vars.value.quantite }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="w-full px-2 mb-4 sm:w-1/2">
+                                            <div class="relative h-full ml-0 mr-0 sm:mr-10">
+                                                <span class="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-orange-500 rounded-lg"></span>
+                                                <div class="relative h-full p-5 bg-white border-2 border-orange-500 rounded-lg flex flex-col justify-center text-center">
+                                                    <div class="flex items-center justify-center -mt-1">
+                                                        <h3 class="my-2 ml-3 text-lg font-bold text-gray-800">Référence</h3>
+                                                    </div>
+                                                    <p>{{ form.vars.value.refFabricant }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% include 'components/Flow/buttons.html.twig' %}
+                                </div>                                        
+                                {% endif %} 
+                            </div>
+                            {{ form_end(form) }}
+                        {% elseif typeForm == 'incrementeDecrementeQuantite' %}
+                                <div class="mb-10">
+                                    <h1 class="text-3xl font-extrabold uppercase !leading-snug text-primary md:text-3xl">Modification de Quantité</h1>
+                                    <p class="text-base font-bold leading-normal text-white-dark">Nous allons gérer votre modification en plusieurs étapes</p>
+                                </div>
+                                {{ form_start(form) }}
+                                <div class='space-y-4'>
+                                    {{ form_errors(form) }}
+                                    {% if flow.getCurrentStepNumber() == 1 %}
+                                        <div class='p-4'>
+                                            <h1 class="text-xl font-bold mb-2">Quantité</h1>
+                                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                                                {{ form_row(form.quantite) }}
+                                            </div>
+                                            {% include 'components/Flow/buttons.html.twig' %}
+                                        </div>
+                                    {% endif %}
+        
+                                    {% if flow.getCurrentStepNumber() == flow.getLastStepNumber() %}
+                                    <div class="panel container relative flex flex-col justify-between h-full max-w-6xl px-10 mx-auto xl:px-0 mt-5">
+                                        <h2 class="mb-3 text-3xl font-extrabold leading-tight text-gray-900 text-center">Récapitulatif</h2>
+                                        <div class="flex flex-wrap mb-10 -mx-2">
+                                            <div class="w-full px-2 mb-4 sm:w-1/2">
+                                                <div class="relative h-full ml-0 mr-0 sm:mr-10">
+                                                    <span class="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-indigo-500 rounded-lg"></span>
+                                                    <div class="relative h-full p-5 bg-white border-2 border-indigo-500 rounded-lg flex flex-col justify-center text-center">
+                                                        <div class="flex items-center justify-center -mt-1">
+                                                            <h3 class="my-2 ml-3 text-lg font-bold text-gray-800">Quantité Actuelle</h3>
+                                                        </div>
+                                                        <p>{{ quantiteActuelle }}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="w-full px-2 mb-4 sm:w-1/2">
+                                                <div class="relative h-full ml-0 mr-0 sm:mr-10">
+                                                    <span class="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-purple-500 rounded-lg"></span>
+                                                    <div class="relative h-full p-5 bg-white border-2 border-purple-500 rounded-lg flex flex-col justify-center text-center">
+                                                        <div class="flex items-center justify-center -mt-1">
+                                                            <h3 class="my-2 ml-3 text-lg font-bold text-gray-800">Quantité Prévue</h3>
+                                                        </div>
+                                                        {% if route == 'app_produit_incremente_quantite' %}
+                                                        <p>{{ form.vars.value.quantite + quantiteActuelle }}</p>
+                                                        {% else  %}
+                                                            <p>{{ quantiteActuelle - form.vars.value.quantite > 0 ? quantiteActuelle - form.vars.value.quantite : 0 }}</p>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                        {% include 'components/Flow/buttons.html.twig' %}
+                                    </div>
+                                    {% endif %} 
+                                </div>
+                                {{ form_end(form) }}
+                        {% elseif typeForm == 'creationPret' %}
+                            <div class="mb-10">
+                                <h1 class="text-3xl font-extrabold uppercase !leading-snug text-primary md:text-4xl">Création de prêt</h1>
+                                <p class="text-base font-bold leading-normal text-white-dark">Nous allons crée un prêt en plusieurs étapes</p>
+                            </div>
+                            {{ form_start(form) }}
+                            <div class='space-y-4'>
+                                {{ form_errors(form) }}
+
+                                {% if flow.getCurrentStepNumber() == 1 %}
+                                    <div class="p-4">
+                                        <h1 class="text-xl font-bold mb-2">Produits</h1>
+                                        <div class="space-y-2">
+                                            <label for="gridNom">Veuillez scanner un code barre</label>
+                                            {{ form_row(form.produit) }}
+                                        </div>
+                                        {% include 'components/Flow/buttons.html.twig' %}
+                                    </div>
+                                {% endif %}
+                                {% if flow.getCurrentStepNumber() == 2 %}
+                                     <div class="p-4">
+                                        <h1 class="text-xl font-bold mb-2">Utilisateur</h1>
+                                        <div class="space-y-2">
+                                            <label for="gridNom">Veuillez renseignée un nom d'utilisateur</label>
+                                            {{ form_row(form.user) }}
+                                        </div>
+                                        {% include 'components/Flow/buttons.html.twig' %}
+                                    </div>
+                                {% endif %}
+                                {% if flow.getCurrentStepNumber() == 3 %}
+                                     <div class="p-4">
+                                        <h1 class="text-xl font-bold mb-2">Date</h1>
+                                        <div id="date-range-picker" date-rangepicker class="flex items-center">
+                                        <div class="relative">
+                                            
+                                            {# <input id="datepicker-range-start" name="start" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date start"> #}
+                                            {{ form_row(form.datePret) }}
+                                        </div>
+                                        <span class="mx-4 text-gray-500">à</span>
+                                        <div class="relative">
+                                            {# <input id="datepicker-range-end" name="end" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date end"> #}
+                                            {{ form_row(form.dateFinPrevue) }}
+                                        </div>
+                                        </div>
+                                        {% include 'components/Flow/buttons.html.twig' %}
+                                    </div>
+                                {% endif %}
+                                {% if flow.getCurrentStepNumber() == flow.getLastStepNumber() %}
+                                    <div class="panel container relative flex flex-col justify-between h-full max-w-6xl px-10 mx-auto xl:px-0 mt-5">
+                                        <h2 class="mb-3 text-3xl font-extrabold leading-tight text-gray-900 text-center">Récapitulatif</h2>
+                                        <div class="flex flex-wrap mb-10 -mx-2">
+                                            <div class="w-full px-2 mb-4 sm:w-1/2">
+                                                <div class="relative h-full ml-0 mr-0 sm:mr-10">
+                                                    <span class="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-indigo-500 rounded-lg"></span>
+                                                    <div class="relative h-full p-5 bg-white border-2 border-indigo-500 rounded-lg flex flex-col justify-center text-center">
+                                                        <div class="flex items-center justify-center -mt-1">
+                                                            <h3 class="my-2 ml-3 text-lg font-bold text-gray-800">Produit Concerné</h3>
+                                                        </div>
+                                                        {% for p in form.vars.value.produit %}
+                                                            <p>{{ p.nom }}</p>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="w-full px-2 mb-4 sm:w-1/2">
+                                                <div class="relative h-full ml-0 mr-0 sm:mr-10">
+                                                    <span class="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-purple-500 rounded-lg"></span>
+                                                    <div class="relative h-full p-5 bg-white border-2 border-purple-500 rounded-lg flex flex-col justify-center text-center">
+                                                        <div class="flex items-center justify-center -mt-1">
+                                                            <h3 class="my-2 ml-3 text-lg font-bold text-gray-800">Utilisateur Concerné</h3>
+                                                        </div>
+                                                        <p>{{ form.vars.value.user }}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="w-full px-2 mb-4 sm:w-1/2">
+                                                <div class="relative h-full ml-0 mr-0 sm:mr-10">
+                                                    <span class="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-orange-500 rounded-lg"></span>
+                                                    <div class="relative h-full p-5 bg-white border-2 border-orange-500 rounded-lg flex flex-col justify-center text-center">
+                                                        <div class="flex items-center justify-center -mt-1">
+                                                            <h3 class="my-2 ml-3 text-lg font-bold text-gray-800">Date</h3>
+                                                        </div>
+                                                        Du {{ form.vars.value.datePret|date('d/m/Y') }} au {{ form.vars.value.dateFin ? form.vars.value.dateFin|date('d/m/Y') : '(à définir)' }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                        {% include 'components/Flow/buttons.html.twig' %}
+                                    </div>
+                                {% endif %} 
+                                </div>
+                                {{ form_end(form) }}
+                        {% elseif typeForm == 'creationUser' %}
+                            <div class="mb-10">
+                                <h1 class="text-3xl font-extrabold uppercase !leading-snug text-primary md:text-4xl">Création d'un utilisateur</h1>
+                                <p class="text-base font-bold leading-normal text-white-dark">Nous allons crée un utilisateur en plusieurs étapes</p>
+                            </div>
+                            {{ form_start(form) }}
+                            <div class='space-y-4'>
+                                {{ form_errors(form) }}
+                                {% if flow.getCurrentStepNumber() == 1 %}
+                                    <div class="p-4">
+                                        <h1 class="text-xl font-bold mb-2">Email</h1>
+                                        <div class="space-y-2">
+                                            <p>{{ form_row(form.email) }}<p>
+                                        </div>
+                                        {% include 'components/Flow/buttons.html.twig' %}
+                                    </div>
+                                {% endif %}
+                                {% if flow.getCurrentStepNumber() == flow.getLastStepNumber() %}
+                                    <div class="panel container relative flex flex-col justify-between h-full max-w-6xl px-10 mx-auto xl:px-0 mt-5">
+                                        <h2 class="mb-3 text-3xl font-extrabold leading-tight text-gray-900 text-center">Récapitulatif</h2>
+                                        <div class="flex flex-wrap mb-10 -mx-2">
+                                            <div class="w-full px-2 mb-4 sm:w-1/2">
+                                                <div class="relative h-full ml-0 mr-0 sm:mr-10">
+                                                    <span class="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-indigo-500 rounded-lg"></span>
+                                                    <div class="relative h-full p-5 bg-white border-2 border-indigo-500 rounded-lg flex flex-col justify-center text-center">
+                                                        <div class="flex items-center justify-center -mt-1">
+                                                            <h3 class="my-2 ml-3 text-lg font-bold text-gray-800">Votre Compte</h3>
+                                                        </div>
+                                                        <p>{{ form.vars.value.email }}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="w-full px-2 mb-4 sm:w-1/2">
+                                                <div class="relative h-full ml-0 mr-0 sm:mr-10">
+                                                    <span class="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-purple-500 rounded-lg"></span>
+                                                    <div class="relative h-full p-5 bg-white border-2 border-purple-500 rounded-lg flex flex-col justify-center text-center">
+                                                        <div class="flex items-center justify-center -mt-1">
+                                                            <h3 class="my-2 ml-3 text-lg font-bold text-gray-800">Votre mot de passe par défault</h3>
+                                                        </div>
+                                                        {% set password = 'Password123'%}
+                                                        <p>{{ password }}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                        {% include 'components/Flow/buttons.html.twig' %}
+                                    </div>
+                                {% endif %} 
+                                </div>
+                                {{ form_end(form) }}
+                        {% elseif typeForm == 'creationCarte' %} 
+                            <div class="mb-10">
+                                <h1 class="text-3xl font-extrabold uppercase !leading-snug text-primary md:text-4xl">Création d'une carte</h1>
+                                <p class="text-base font-bold leading-normal text-white-dark">Nous allons crée une carte en plusieurs étapes</p>
+                            </div>
+                             {{ form_start(form) }}
+                            <div class='space-y-4'>
+                                {{ form_errors(form) }}
+                                {% if flow.getCurrentStepNumber() == 1 %}
+                                    <div class="p-4">
+                                        <h1 class="text-xl font-bold mb-2">Valeur Carte</h1>
+                                        <div class="space-y-2">
+                                            <p>{{ form_row(form.valeur) }}<p>
+                                        </div>
+                                        {% include 'components/Flow/buttons.html.twig' %}
+                                    </div>
+                                {% endif %}
+                                {% if flow.getCurrentStepNumber() == flow.getLastStepNumber() %}
+                                    <div class="panel container relative flex flex-col justify-between h-full max-w-6xl px-10 mx-auto xl:px-0 mt-5">
+                                        <h2 class="mb-3 text-3xl font-extrabold leading-tight text-gray-900 text-center">Récapitulatif</h2>
+                                        <div class="flex flex-wrap mb-10 -mx-2">
+                                            <div class="w-full px-2 mb-4 sm:w-1/2">
+                                                <div class="relative h-full ml-0 mr-0 sm:mr-10">
+                                                    <span class="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-indigo-500 rounded-lg"></span>
+                                                    <div class="relative h-full p-5 bg-white border-2 border-indigo-500 rounded-lg flex flex-col justify-center text-center">
+                                                        <div class="flex items-center justify-center -mt-1">
+                                                            <h3 class="my-2 ml-3 text-lg font-bold text-gray-800">Référence carte</h3>
+                                                        </div>
+                                                        <p>{{ carte.reference }}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="w-full px-2 mb-4 sm:w-1/2">
+                                                <div class="relative h-full ml-0 mr-0 sm:mr-10">
+                                                    <span class="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-purple-500 rounded-lg"></span>
+                                                    <div class="relative h-full p-5 bg-white border-2 border-purple-500 rounded-lg flex flex-col justify-center text-center">
+                                                        <div class="flex items-center justify-center -mt-1">
+                                                            <h3 class="my-2 ml-3 text-lg font-bold text-gray-800">Valeur carte</h3>
+                                                        </div>
+                                                        <p>{{ form.vars.value.valeur }}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                        {% include 'components/Flow/buttons.html.twig' %}
+                                    </div>
+                                {% endif %} 
+                                </div>
+                                {{ form_end(form) }}
+                        {% endif %}
+                        </div>
+                        <p class="absolute bottom-6 w-full text-center dark:text-white">
+                            © <span id="footer-year">2024</span>. ECIR.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    {# fais un écouteur qui empeche de faire entrer #}
+    document.addEventListener('keydown', function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+        }
+    });
+</script>

@@ -1,0 +1,52 @@
+{
+	"FormDelete Twig Component": {
+	  "prefix": "formdelete",
+	  "body": [
+		"<twig:FormDelete url=\"$1\" id=\"{{${2:p.id}}}\" />"
+	  ],
+	  "description": "Insère un composant FormDelete en Twig"
+	},
+	"FormEdit Twig Component": {
+	  "prefix": "Modif",
+	  "body": [
+		"<twig:Modif  url=\"$1\" id=\"{{${2:p.id}}}\" />"
+	  ],
+	  "description": "Insère un bonton d'édition en Twig"
+	},
+	"Tableau Twig Component": {
+		"prefix": "Tableau",
+		"body": [
+			"<twig:Tableau \n    entityType=\"{{ ${1:entityType} }}\" \n    titre=\"{{ ${2:titre} }}\" \n    titreBouton=\"{{ ${3:titreBouton} }}\" \n    actionButton=\"{{ ${4:actionButton} }}\" \n    listeTh=\"{{ ${5:liste_th} }}\" \n    listeAttributs=\"{{ ${6:listeAttributs} }}\" \n    listeObjets=\"{{ ${7:listeObjets} }}\" \n    urlModif=\"{{ ${8:urlModif} }}\" \n    urlSupp=\"{{ ${9:urlSupp} }}\"\n/>"
+		],
+		"description": "Insère un composant Tableau en Twig"
+	},
+	"Message Flash Success": {
+		"prefix": "flashSuccess",
+		"body": [
+			"notyf()->position('x', 'center')->position('y', 'top')->duration(4000)->addInfo($1);"
+		],
+		"description": "Insère un message flash de succès"
+	},
+	"Message Flash Erreur": {
+		"prefix": "flashErreur",
+		"body": [
+			"notyf()->position('x', 'center')->position('y', 'top')->duration(4000)->addError($1);"
+		],
+		"description": "Insère un message flash d'erreur"
+	},
+	"Message Flash Warning": {
+		"prefix": "flashWarning",
+		"body": [
+			"notyf()->position('x', 'center')->position('y', 'top')->duration(4000)->addWarning($1);"
+		],
+		"description": "Insère un message flash de warning"
+	},
+	"Message Flash Info": {
+		"prefix": "flashInfo",
+		"body": [
+			"notyf()->position('x', 'center')->position('y', 'top')->duration(4000)->addInfo($1);"
+		],
+		"description": "Insère un message flash d'information"
+	},
+  }
+  

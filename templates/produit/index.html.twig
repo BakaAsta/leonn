@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ titre }}{% endblock %}
+
+{% block body %}
+    <div class="panel space-y-4">
+        <div class="flex items-center justify-between">
+            <h1 class="text-2xl font-bold">{{ titre }}</h1>
+            {% if actionButton is defined and actionButton is not null and titreBouton is defined and titreBouton is not null %}
+                <a href="{{ path(actionButton) }}" class="inline-flex justify-center">
+                    <button class="w-40 h-12 bg-white cursor-pointer rounded-xl border border-[#D6BBFB] text-[#D6BBFB] shadow-[inset_0px_-2px_0px_1px_#D6BBFB] group hover:bg-[#D6BBFB] hover:text-white transition duration-300 ease-in-out">
+                        <span class="font-medium group-hover:text-white">{{ titreBouton }}</span>
+                    </button>
+                </a>
+            {% endif %}
+        </div>
+        <div {{ react_component('tableauProduit', {token: accessToken}) }}></div> 
+    </div>
+    {# {{ component('RechercheProduit') }} #}
+{% endblock %}
+

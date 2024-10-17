@@ -1,0 +1,10 @@
+{% block choice_widget_expanded %}
+    <div {{ block('widget_container_attributes') }}>
+    {% for child in form %}
+        <div class="form-checkbox ml-2 flex items-center">
+            {{ form_widget(child) }}
+            {{ form_label(child) }}
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}

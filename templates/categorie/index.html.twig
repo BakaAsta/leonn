@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ titre }}{% endblock %}
+
+{% block body %}
+    {# <twig:Tableau 
+        entityType="{{ entityType }}" 
+        titre="{{ titre }}" 
+        titreBouton="{{ titreBouton }}" 
+        actionButton="{{ actionButton }}" 
+        listeTh="{{ liste_th }}" 
+        listeAttributs="{{ listeAttributs }}" 
+        listeObjets="{{ listeObjets }}" 
+        urlModif="{{ urlModif }}" 
+        urlSupp="{{ urlSupp }}"
+    /> #}
+
+    
+    <div {{ react_component('tableauCategorie', {
+        titre: titre,
+        titreBouton: titreBouton,
+        token:accessToken
+    }) }}></div> 
+{% endblock %}

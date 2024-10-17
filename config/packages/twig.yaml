@@ -1,0 +1,12 @@
+twig:
+    file_name_pattern: '*.twig'
+    form_themes: ['tailwind_2_layout.html.twig', 'form/form_multiple_choice_layout.html.twig']
+
+    globals :
+    # récupérer l'id connecter de l'utilisateur 
+        idConnecte: 
+
+when@test:
+    twig:
+        strict_variables: true
+    

@@ -1,0 +1,50 @@
+{
+    "devDependencies": {
+        "@babel/core": "^7.17.0",
+        "@babel/preset-env": "^7.16.0",
+        "@babel/preset-react": "^7.24.7",
+        "@hotwired/stimulus": "^3.0.0",
+        "@hotwired/turbo": "^7.1.1 || ^8.0",
+        "@symfony/stimulus-bridge": "^3.2.0",
+        "@symfony/ux-autocomplete": "file:vendor/symfony/ux-autocomplete/assets",
+        "@symfony/ux-live-component": "file:vendor/symfony/ux-live-component/assets",
+        "@symfony/ux-react": "file:vendor/symfony/ux-react/assets",
+        "@symfony/ux-turbo": "file:vendor/symfony/ux-turbo/assets",
+        "@symfony/webpack-encore": "^4.0.0",
+        "@tailwindcss/typography": "^0.5.12",
+        "autoprefixer": "^10.4.19",
+        "core-js": "^3.23.0",
+        "postcss": "^8.4.38",
+        "postcss-loader": "^8.1.1",
+        "react": "^18.0",
+        "react-dom": "^18.0",
+        "regenerator-runtime": "^0.13.9",
+        "tailwindcss": "^3.4.3",
+        "tom-select": "^2.2.2",
+        "webpack": "^5.74.0",
+        "webpack-cli": "^4.10.0",
+        "webpack-notifier": "^1.15.0"
+    },
+    "license": "UNLICENSED",
+    "private": true,
+    "scripts": {
+        "dev-server": "encore dev-server",
+        "dev": "encore dev",
+        "watch": "encore dev --watch",
+        "build": "encore production --progress"
+    },
+    "dependencies": {
+        "@emotion/react": "^11.11.4",
+        "@emotion/styled": "^11.11.5",
+        "@fortawesome/fontawesome-svg-core": "^6.5.2",
+        "@fortawesome/free-solid-svg-icons": "^6.5.2",
+        "@fortawesome/react-fontawesome": "^0.2.2",
+        "@tailwindcss/forms": "^0.5.7",
+        "final-form": "^4.20.10",
+        "jquery": "^3.7.1",
+        "primeicons": "^7.0.0",
+        "primereact": "^10.6.6",
+        "react-final-form": "^6.5.9",
+        "styled-components": "^6.1.11"
+    }
+}

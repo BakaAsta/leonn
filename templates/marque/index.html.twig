@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ titre }}{% endblock %}
+
+{% block body %}    
+    <div {{ react_component('tableauMarque', {
+            titre : titre,
+            titreBouton : titreBouton,
+            token:accessToken
+        }) }}>
+    </div> 
+     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+            var konamiCodePosition = 0;
+
+            document.addEventListener('keydown', function(event) {
+                if (event.keyCode === konamiCode[konamiCodePosition]) {
+                    konamiCodePosition++;
+                    if (konamiCodePosition === konamiCode.length) {
+                        konamiCodeActivated();
+                        konamiCodePosition = 0;
+                    }
+                } else {
+                    konamiCodePosition = 0;
+                }
+            });
+
+            
+            function konamiCodeActivated() {
+                var audio = new Audio('/assets/son/marc.mp3');
+                audio.play();
+            }
+        });
+    </script>
+{% endblock %}

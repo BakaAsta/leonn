@@ -1,0 +1,63 @@
+
+{% if this.data.pageCount > 1 %}
+<div class="dataTable-bottom">
+    <nav class="dataTable-pagination">
+        <div class="flex items-center justify-center space-x-2">
+            {% if this.data.first is defined and this.data.current != this.data.first %}
+                <button type="button" name="paginatorPage" data-model="paginatorPage" value="{{ 1 }}" onclick="replaceValuePaginator({{ 1 }}, 'pageInput')"
+                class="rounded-full bg-white text-blue-600 px-4 py-2 text-lg font-bold hover:bg-blue-600 hover:text-white transition-colors">
+                    ««
+                </button>
+            {% endif %}
+
+            {% if this.data.previous is defined %}
+                <button rel="prev" type="button" name="paginatorPage" data-model="paginatorPage" value="{{ page-1 }}" onclick="replaceValuePaginator({{ page-1 }}, 'pageInput')"
+                class="rounded-full bg-white text-blue-600 px-4 py-2 text-lg hover:bg-blue-600 hover:text-white transition-colors">
+                    «
+                </button>
+            {% endif %}
+
+            {% for page in this.data.pagesInRange %}
+                {% if page != this.data.current %}
+                    <button type="button" name="paginatorPage" data-model="paginatorPage" value="{{ page }}" onclick="replaceValuePaginator({{ page }}, 'pageInput')"
+                    class="rounded-full bg-white text-blue-600 px-4 py-2 text-lg hover:bg-blue-600 hover:text-white transition-colors">
+                        {{ page }}
+                    </button>
+                {% else %}
+                    <span class="rounded-full bg-blue-600 text-white px-4 py-2 text-lg">{{ page }}</span>
+                {% endif %}
+            {% endfor %}
+
+            {% if this.data.next is defined %}
+                <button rel="next" type="button" name="paginatorPage" data-model="paginatorPage" value="{{ page+1 }}" onclick="replaceValuePaginator({{ page+1 }}, 'pageInput')"
+                class="rounded-full bg-white text-blue-600 px-4 py-2 text-lg hover:bg-blue-600 hover:text-white transition-colors">
+                    »
+                </button>
+            {% endif %}
+
+            {% if this.data.last is defined and this.data.current != this.data.last %}
+                <button type="button" name="paginatorPage" data-model="paginatorPage" value="{{ this.data.pageCount }}" onclick="replaceValuePaginator({{ this.data.pageCount }}, 'pageInput')"
+                class="rounded-full bg-white text-blue-600 px-4 py-2 text-lg font-bold hover:bg-blue-600 hover:text-white transition-colors">
+                    »»
+                </button>
+            {% endif %}
+        </div>
+    </nav>
+</div>
+<script>
+var page = document.getElementById('pageInput');
+var attributTri = document.getElementById('attributTriInput');
+    function replaceValuePaginator(valeur, cible) {
+        var page = document.getElementById(cible);
+        page.value = valeur;
+
+        var event = new Event('change', {
+            'bubbles': true,
+            'cancelable': true
+        });
+
+        page.dispatchEvent(event);
+    }
+
+</script>
+{% endif %}

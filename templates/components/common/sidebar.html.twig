@@ -1,0 +1,163 @@
+<div :class="{ 'dark text-white-dark': $store.app.semidark }">
+    <nav x-data="sidebar"
+        class="sidebar fixed min-h-screen h-full top-0 bottom-0 w-[260px] shadow-[5px_0_25px_0_rgba(94,92,154,0.1)] z-50 transition-all duration-300">
+        <div class="bg-white dark:bg-[#0e1726] h-full">
+            <ul class="perfect-scrollbar relative font-semibold space-y-0.5 h-[calc(100vh-80px)] overflow-y-auto overflow-x-hidden  p-4 py-0"
+                x-data="{ activeDropdown: null }">
+                <h2
+                    class="py-3 px-7 flex items-center uppercase font-extrabold bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] -mx-4 mb-1 space-x-3">
+
+                    <img src="{{ asset('assets/images/paon.png') }}" width=60vw>
+                    <span>Leonn</span>
+                </h2>
+
+                <li class="nav-item">
+                    <ul>
+                        <li class="nav-item group">
+                            <a href="{{ path('app_home') }}" class="transition-colors duration-300 ease-in-out" data-turbo="false">
+                                <div class="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" class="group-hover-fill-blue transition-colors">
+                                        <path fill="currentColor" d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z" />
+                                    </svg>
+                                    <span class="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">Home</span>
+                                </div>
+                            </a>
+                        </li>
+
+
+
+                        <li class="menu nav-item">
+                            <button type="button" class="nav-link group"
+                                :class="{ 'active': activeDropdown === 'pret' }"
+                                @click="activeDropdown === 'pret' ? activeDropdown = null : activeDropdown = 'pret'">
+                                <div class="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="m21 3.031l-.656.719c-1.469 1.617-2.68 2.34-3.688 2.813c-1.008.472-1.855.613-2.687 1.25c-.887.68-2.176 1.984-2.719 4.312c-1.164.254-2.016.7-2.688 1.281c-.664.574-1.164 1.227-1.78 1.938c-.005.008.003.023 0 .031c-.884 1.016-1.657 2.11-3.157 2.688l-.625.25V29h19.063c1.093-.059 1.851-.816 2.312-1.563c.46-.746.715-1.554.844-2.218c.332-1.692.937-6.563.937-6.563l.032-.093v-.094c-.032-.676-.31-1.25-.657-1.782l1.125-3.343l1.782-2.688l.5-.719l-.657-.593l-6.562-5.688zm.063 2.75l5.218 4.532l-1.375 2.03l-.093.095l-.032.156l-.906 2.687c-.473-.195-.96-.332-1.5-.312h-.063L16 15h-1v3.875c-.14 1.09-.746 1.512-1.5 1.813c-.25.101-.281.046-.5.093V14.97c-.164-3.707 1.156-4.774 2.188-5.563c.285-.219 1.12-.472 2.312-1.031c.996-.469 2.234-1.309 3.563-2.594zm-10 8.594c-.004.227-.075.387-.063.625v8h1s1.07-.012 2.219-.469c1.148-.457 2.535-1.527 2.781-3.406V17l5.375-.031h.031a1.662 1.662 0 0 1 1.75 1.562c-.004.016-.05.387-.062.469H20v2h3.844c-.106.773-.203 1.258-.313 2H20v2h3.219a5.002 5.002 0 0 1-.563 1.375c-.273.445-.508.613-.718.625H5v-7.469c1.621-.86 2.629-2.097 3.281-2.843c.676-.774 1.14-1.36 1.594-1.75c.297-.254.762-.399 1.188-.563"/></svg>
+                                    <span
+                                        class="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">Prêts</span>
+                                </div>
+                                <div class="rtl:rotate-180" :class="{ '!rotate-90': activeDropdown === 'pret' }">
+
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                            </button>
+                            <ul x-cloak x-show="activeDropdown === 'pret'" x-collapse
+                                class="sub-menu text-gray-500">
+                                <li>
+                                    <a href="{{ path('app_pret') }}" data-turbo="false">Liste des Prêts</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('app_gestion_pret') }}" data-turbo="false">Création de pret</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('app_gestion_retard_pret') }}" data-turbo="false">Liste des prets en retard</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="menu nav-item">
+                            <button type="button" class="nav-link group relative" :class="{ 'active': activeDropdown === 'produit' }" @click="activeDropdown === 'produit' ? activeDropdown = null : activeDropdown = 'produit'">
+                                <div class="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 2048 2048">
+                                        <path fill="currentColor" d="m1344 2l704 352v785l-128-64V497l-512 256v258l-128 64V753L768 497v227l-128-64V354zm0 640l177-89l-463-265l-211 106zm315-157l182-91l-497-249l-149 75zm-507 654l-128 64v-1l-384 192v455l384-193v144l-448 224L0 1735v-676l576-288l576 288zm-640 710v-455l-384-192v454zm64-566l369-184l-369-185l-369 185zm576-1l448-224l448 224v527l-448 224l-448-224zm384 576v-305l-256-128v305zm384-128v-305l-256 128v305zm-320-288l241-121l-241-120z"/>
+                                    </svg>
+                                    <span class="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690]">Produits</span>
+                                </div>
+                                <div class="rtl:rotate-180 transition-transform transform origin-center" :class="{ 'rotate-90': activeDropdown === 'produit' }">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </button>
+
+                            <ul x-cloak x-show="activeDropdown === 'produit'" x-collapse
+                                class="sub-menu text-gray-500">
+                                <li>
+                                    <a href="{{ path('app_produit') }}" data-turbo="false">Produits</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('app_marque') }}" data-turbo="false">Marques</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('app_categorie') }}" data-turbo="false">Catégories</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('app_type_produit') }}" data-turbo="false">Types</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item group">
+                            <a href="{{ path('app_carte') }}" data-turbo="false">
+                                <div class="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="group-hover-stroke-blue transition-colors" width="1em" height="1em" viewBox="0 0 48 48">
+                                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M30.5 15.7a3.76 3.76 0 0 1 2.8 2.5m-2.5-5.8c2.8.7 4.6 2.6 5.8 5.3m-5.1-8.9c3.4.9 6.6 2.7 8.6 8.3M12.3 35.3a3.76 3.76 0 0 1 2.8 2.5M12.6 32c2.8.7 4.6 2.6 5.8 5.3m-5.1-8.9c3.4.9 6.6 2.7 8.6 8.3"/>
+                                        <circle cx="24" cy="24" r="21.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M22.8 18.2h5.7M22.8 24h3.7m-3.7-5.8v11.6M11.1 24V12.4L18.7 24V12.4m18.2 19.3a3.82 3.82 0 0 1-3.8 3.9h0a3.8 3.8 0 0 1-3.8-3.8v-3.9a3.8 3.8 0 0 1 3.8-3.8h0a3.8 3.8 0 0 1 3.8 3.8h0"/>
+                                    </svg>
+                                    <span class="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">Cartes</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="menu nav-item">
+                            <button type="button" class="nav-link group"
+                                :class="{ 'active': activeDropdown === 'utilisateurs' }"
+                                @click="activeDropdown === 'utilisateurs' ? activeDropdown = null : activeDropdown = 'utilisateurs'">
+                                <div class="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="group-hover-fill-blue transition-colors" stroke-linecap="round" stroke-linejoin="round" width="1em" height="1em" viewBox="0 0 16 16">
+                                        <path fill="currentColor" d="M15 14s1 0 1-1s-1-4-5-4s-5 3-5 4s1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276c.593.69.758 1.457.76 1.72l-.008.002l-.014.002zM11 7a2 2 0 1 0 0-4a2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0a3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904c.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724c.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0a3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4a2 2 0 0 0 0-4"/>
+                                    </svg>
+                                    <span class="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">Utilisateurs</span>
+                                </div>
+                                <div class="rtl:rotate-180" :class="{ '!rotate-90': activeDropdown === 'utilisateurs' }">
+
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                            </button>
+                            <ul x-cloak x-show="activeDropdown === 'utilisateurs'" x-collapse
+                                class="sub-menu text-gray-500">
+                                <li>
+                                    <a href="{{ path('app_user') }}" data-turbo="false">Liste des Utilisateurs</a>
+                                </li>
+                                {% if app.user.id is defined and app.user.id is not null %}
+                                <li>
+                                    <a href="{{ path('app_user_listePrets', {user: app.user.id}) }}" data-turbo="false">Mes Prets</a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </li>
+
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<script>
+    document.addEventListener("alpine:init", () => {
+        Alpine.data("sidebar", () => ({
+            init() {
+                const selector = document.querySelector('.sidebar ul a[href="' + window.location
+                    .pathname + '"]');
+                if (selector) {
+                    selector.classList.add('active');
+                    const ul = selector.closest('ul.sub-menu');
+                    if (ul) {
+                        let ele = ul.closest('li.menu').querySelectorAll('.nav-link');
+                        if (ele) {
+                            ele = ele[0];
+                            setTimeout(() => {
+                                ele.click();
+                            });
+                        }
+                    }
+                }
+            },
+        }));
+    });
+</script>

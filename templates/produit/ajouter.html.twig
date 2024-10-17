@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+{{ form_start(form) }}
+{{ form_widget(form.createAt) }}
+{{ form_widget(form.updatedAt) }}
+<div class="flex justify-between text-center align-middle mb-2">
+    <h1 class="text-2xl font-bold">{{ titre }}</h1>
+</div>
+<div class='grid grid-cols-4 mb-2'>
+    <div>
+        <div class="panel h-fit">
+            <h1 class="text-xl font-bold mb-1">Produit</h1>
+            <div class="space-y-5">
+                <label for="gridNom">Nom</label>
+                <input
+                    id="gridNom"
+                    type="text"
+                    class="form-input"
+                    name="{{ field_name(form.nom) }}"
+                    value="{{ field_value(form.nom) }}"
+                />
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5">
+                    <div>
+                        <label for="gridRefInterne">Ref interne</label>
+                        <button type="button" class="px-4 py-2 mb-2 rounded text-dark border border-primary flex items-center space-x-2 hover:bg-blue-600 hover:text-white cursor-default">
+                            {{ refInterne }}
+                        </button>
+                    </div>
+                    <div>
+                        <label for="gridRefInterne">Ref fabricant</label>
+                        <input
+                            id="gridRefFabricant"
+                            type="text"
+                            class="form-input"
+                            name="{{ field_name(form.refFabricant) }}"
+                            value="{{ field_value(form.refFabricant) }}"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='panel h-fit mt-2'>
+            <h1 class="text-xl font-bold mb-1">Précision</h1>
+            <div class="mt-5">
+                <div class="form-group">
+                    {{ form_row(form.typeProduit) }}
+                    {# {{ form_row(form.typeProduit, {'attr': {'class': 'div>div>input>form-checkbox'}}) }} #}
+                    {# {% for child in form.typeProduit|filter(child => not child.rendered) %}
+                        <div class="flex items-center">
+                            <label for="form_label(child)" class="mr-1">{{ form_label(child) }}</label>
+                            <input
+                                id="form_label(child)"
+                                type="checkbox"
+                                class="flex items-center form-checkbox"
+                                name="form_label(child)"
+                                value="{{ form_widget(child) }}"
+                            />
+                        </div>
+                    {% endfor %} #}
+                </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5">
+                {{ form_row(form.categories) }}
+                {{ form_row(form.marque) }}
+            </div>
+        </div>
+    </div>
+    <div class='panel h-fit ml-2'>
+        <h1 class="text-xl font-bold mb-1">Commentaire</h1>
+        <div class='space-y-5'>
+            <input
+                id="gridComm"
+                type="text"
+                class="form-input"
+                name="{{ field_name(form.commentaire) }}"
+                value="{{ field_value(form.commentaire) }}"
+            />
+        </div>
+    </div>
+    {# <div class='panel h-fit ml-2'>
+        <h1 class="text-xl font-bold mb-1">Rebus</h1>
+        <div class='space-y-5'>
+            <div class="grid grid-cols-2 mt-5">
+                <label class="flex items-center">
+                    {{ form_row(form.rebus) }}
+                </label>
+                {{ form_row(form.dateRebus) }}
+            </div>
+        </div>
+    </div> #}
+</div>
+{{ form_widget(form.sauvegarder, { 'label': 'Sauvegarder' }) }}
+{{ form_end(form) }}
+
+{% endblock %}
