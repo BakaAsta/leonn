@@ -5,13 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dcaf6c61-aa24-4bbd-a9bc-e07c3d404d3a" name="Changes" comment="ajout fichier phpstorm">
-      <change afterPath="$PROJECT_DIR$/.idea/commandlinetools/Symfony_21_05_2024_09_00.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/commandlinetools/schemas/frameworkDescriptionVersion1.1.4.xsd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/symfony2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Security/AbstractOauthAuthentificator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Security/AbstractOauthAuthentificator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/Envoidemail.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/Envoidemail.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +134,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "feature/Oauth",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -151,34 +150,34 @@
 }]]></component>
   <component name="RdControllerToolWindowsLayoutState" isNewUi="true">
     <layout>
-      <window_info id="Bookmarks" show_stripe_button="false" side_tool="true" />
+      <window_info id="Bookmarks" side_tool="true" />
       <window_info id="Merge Requests" show_stripe_button="false" />
       <window_info id="Welcome to GitHub Copilot" show_stripe_button="false" />
       <window_info id="Commit_Guest" show_stripe_button="false" />
       <window_info id="npm" show_stripe_button="false" side_tool="true" />
-      <window_info id="Pull Requests" show_stripe_button="false" />
+      <window_info id="Pull Requests" />
       <window_info id="Robo tasks" show_stripe_button="false" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.94777155" weight="0.15915301" />
-      <window_info active="true" id="Commit" order="1" sideWeight="0.90738165" visible="true" weight="0.15915301" />
-      <window_info active="true" id="Structure" order="2" sideWeight="0.09261839" side_tool="true" visible="true" weight="0.15915301" />
-      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.9413183" visible="true" weight="0.18151042" />
+      <window_info id="Commit" order="1" sideWeight="0.90434086" weight="0.18151042" />
+      <window_info active="true" id="Structure" order="2" sideWeight="0.058681674" side_tool="true" visible="true" weight="0.18151042" />
+      <window_info anchor="bottom" id="Database Changes" />
       <window_info anchor="bottom" id="TypeScript" show_stripe_button="false" />
       <window_info anchor="bottom" id="File Transfer" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Find" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="0" visible="true" weight="0.32978725" />
+      <window_info anchor="bottom" id="Version Control" order="0" weight="0.32977644" />
       <window_info anchor="bottom" id="Problems" order="1" />
-      <window_info anchor="bottom" id="Problems View" order="2" weight="0.22425532" />
-      <window_info anchor="bottom" id="Terminal" order="3" weight="0.23957446" />
+      <window_info anchor="bottom" id="Problems View" order="2" weight="0.32994187" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="3" visible="true" weight="0.32994187" />
       <window_info anchor="bottom" id="TODO" order="4" weight="0.23957446" />
       <window_info anchor="bottom" id="Run" order="5" weight="0.32978725" />
-      <window_info anchor="bottom" id="Services" order="5" weight="0.23957446" />
+      <window_info anchor="bottom" id="Services" order="6" weight="0.23957446" />
+      <window_info anchor="bottom" id="Find" order="7" weight="0.32994187" />
       <window_info anchor="right" id="make" show_stripe_button="false" side_tool="true" />
       <window_info anchor="right" id="github.copilotToolWindow" show_stripe_button="false" />
       <window_info anchor="right" id="Coverage" show_stripe_button="false" side_tool="true" />
       <window_info anchor="right" id="GitHub Copilot Chat" show_stripe_button="false" />
       <window_info anchor="right" content_ui="combo" id="Notifications" order="0" weight="0.25" />
       <window_info anchor="right" id="AIAssistant" order="1" weight="0.25" />
-      <window_info anchor="right" id="Database" order="2" weight="0.20833334" />
+      <window_info anchor="right" id="Database" order="2" weight="0.32994792" />
       <window_info anchor="right" id="Gradle" order="3" weight="0.25" />
       <window_info anchor="right" id="Maven" order="4" weight="0.25" />
       <window_info anchor="right" id="Hierarchy" order="5" visible="true" weight="0.32991803" />

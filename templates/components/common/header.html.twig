@@ -173,7 +173,7 @@
                                             </div>
                                         </h4>
                                     {% else %}
-                                        <a href="{{ path('app_login') }}">Se connecter</a>
+                                        <a href="{{ path('auth_oauth_login') }}">Se connecter</a>
                                     {% endif %}
                                 </div>
                             </div>
@@ -222,7 +222,7 @@
                                 Se déconnecter
                             </a>
                         {% else %}
-                            <a href="{{ path('app_login') }}">Se connecter</a>
+                            <a href="{{ path('auth_oauth_login') }}">Se connecter</a>
                         {% endif %}
                         </li>
                     </ul>

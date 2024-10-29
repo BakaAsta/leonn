@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use ApiPlatform\Symfony\Bundle\Test\Client;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
