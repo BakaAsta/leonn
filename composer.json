@@ -13,7 +13,7 @@
         "doctrine/doctrine-bundle": "^2.12",
         "doctrine/doctrine-migrations-bundle": "^3.3",
         "doctrine/orm": "^2.19",
-        "fzaninotto/faker": "^1.5",
+        "fakerphp/faker": "^1.23",
         "gesdinet/jwt-refresh-token-bundle": "^1.3",
         "knplabs/knp-paginator-bundle": "^6.3",
         "knpuniversity/oauth2-client-bundle": "*",

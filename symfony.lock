@@ -1,13 +1,4 @@
 {
-    "acseo/typesense-bundle": {
-        "version": "0.7",
-        "recipe": {
-            "repo": "github.com/symfony/recipes-contrib",
-            "branch": "main",
-            "version": "0.7",
-            "ref": "b202ccc902adb679c089d541b1b2748d595b4315"
-        }
-    },
     "api-platform/core": {
         "version": "3.2",
         "recipe": {
@@ -114,18 +105,6 @@
     },
     "php-flasher/flasher-symfony": {
         "version": "v1.15.14"
-    },
-    "php-http/discovery": {
-        "version": "1.19",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "main",
-            "version": "1.18",
-            "ref": "f45b5dd173a27873ab19f5e3180b2f661c21de02"
-        },
-        "files": [
-            "config/packages/http_discovery.yaml"
-        ]
     },
     "symfony/console": {
         "version": "6.4",

@@ -14,10 +14,9 @@ class ProduitFaker extends Fixture
 {
 
     public function __construct(
-        private CategorieRepository $categorieRepository, 
-        private MarqueRepository $marqueRepository, 
-        private TypeProduitRepository $typeProduitRepository,
-        private ProduitRepository $produitRepository
+        private readonly CategorieRepository   $categorieRepository,
+        private readonly TypeProduitRepository $typeProduitRepository,
+        private readonly ProduitRepository $produitRepository
     )
     {
         
@@ -28,11 +27,7 @@ class ProduitFaker extends Fixture
         $faker = \Faker\Factory::create('fr_FR');
         $date = new \DateTime();
         for ($i = 0; $i < 10; $i++) {
-            $produit = new Produit(
-                $this->categorieRepository,
-                $this->marqueRepository,
-                $this->typeProduitRepository
-            );
+            $produit = new Produit();
             $produit->setNom($faker->word);
             $produit->setRefInterne($date->format('dmY') . '00' . $this->produitRepository->nextId());
             $produit->setRefFabricant($faker->word);
