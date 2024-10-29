@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Attribute\Route;
@@ -12,8 +14,11 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends AbstractController
 {
 
+    public const SCOPES = [
+        'google' => [],
+    ];
 
-    #[Route(path: '/login', name: 'app_login')]
+    #[Route(path: '/login', name: 'auth_oauth_login')]
     public function login(AuthenticationUtils $authenticationUtils, SessionInterface $session): Response
     {
         if ($this->getUser()) {
@@ -24,11 +29,9 @@ class SecurityController extends AbstractController
                 ->duration(2000) // 2 seconds
                 ->addInfo('Vous etes connecté sur Leonn');
 
-            // return $this->redirectToRoute('app_home');
+             return $this->redirectToRoute('app_home');
         }
 
-        // get the login error if there is one
-        // dd('cc');
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
@@ -39,5 +42,22 @@ class SecurityController extends AbstractController
     public function logout(): void
     {   
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+    }
+
+    #[Route(path: '/oauth/connect/{service}', name: 'auth_oauth_connect', methods: ['GET'])]
+    public function connect(string $service, ClientRegistry $clientRegistry): RedirectResponse
+    {
+        if (!in_array($service, array_keys(self::SCOPES), true)) {
+            throw $this->createNotFoundException();
+        }
+        return $clientRegistry
+            ->getClient($service)
+            ->redirect(self::SCOPES[$service]);
+    }
+
+    #[Route(path: '/oauth/check/{service}', name: 'auth_oauth_check', methods: ['GET'])]
+    public function check(): Response
+    {
+        return new Response(status: 200);
     }
 }

@@ -18,7 +18,7 @@ class Envoidemail
 
     public function sendEmail($from, $to, $subject, $text)
     {
-        $siteUrl = $this->urlGenerator->generate('app_login', [], UrlGeneratorInterface::ABSOLUTE_URL);
+        $siteUrl = $this->urlGenerator->generate('auth_oauth_login', [], UrlGeneratorInterface::ABSOLUTE_URL);
         $email = (new Email())
             ->from($from)
             ->to($to)
@@ -30,7 +30,7 @@ class Envoidemail
 
     public function sendEmailCustom($from, $to, $subject, $params)
     {
-        $siteUrl = $this->urlGenerator->generate('app_login', [], UrlGeneratorInterface::ABSOLUTE_URL);
+        $siteUrl = $this->urlGenerator->generate('auth_oauth_login', [], UrlGeneratorInterface::ABSOLUTE_URL);
        
         $email = (new TemplatedEmail())
             ->from($from)
