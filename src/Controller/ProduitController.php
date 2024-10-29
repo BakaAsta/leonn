@@ -22,10 +22,9 @@ use function PHPSTORM_META\map;
 class ProduitController extends AbstractController 
 {
     public function __construct(
-        private ProduitRepository $produitRepository,
-        private EntityManagerInterface $entityManager,
-        private CreateProduitFlow $flow,
-        private JWTTokenManagerInterface $jwtManager
+        private readonly ProduitRepository $produitRepository,
+        private readonly EntityManagerInterface $entityManager,
+        private readonly JWTTokenManagerInterface $jwtManager
     )
     {}
 
@@ -33,7 +32,6 @@ class ProduitController extends AbstractController
     #[IsGranted('ROLE_USER')]
     public function index(SessionInterface $sessionInterface): Response
     {
-
         $jwt = $this->jwtManager->create($this->getUser());
         $sessionInterface->set('accessToken', $jwt);
         $token = $sessionInterface->get('accessToken');

@@ -20,8 +20,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ApiResource(
     operations: [
-        new GetCollection(normalizationContext: ['groups' => 'user:read'],
-        paginationEnabled: false),
+        new GetCollection(paginationEnabled: false,
+            normalizationContext: ['groups' => 'user:read']),
         new Delete(
             security: "is_granted('ROLE_ADMIN')" 
         ), 
@@ -49,15 +49,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      */
-    #[ORM\Column]
+
+    #[ORM\Column(nullable: true)]
     private ?string $password = null;
 
     /**
      * @var Collection<int, Pret>
      * @ApiSubresource()
      */
-    #[ORM\OneToMany(targetEntity: Pret::class, mappedBy: 'user')]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Pret::class)]
     private Collection $prets;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $google_id = null;
 
     public function __construct()
     {
@@ -118,7 +122,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @see PasswordAuthenticatedUserInterface
      */
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
@@ -171,5 +175,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __toString(): string
     {
         return $this->getEmail();
+    }
+
+    public function getGoogleId(): ?string
+    {
+        return $this->google_id;
+    }
+
+    public function setGoogleId(?string $google_id): static
+    {
+        $this->google_id = $google_id;
+
+        return $this;
     }
 }

@@ -30,6 +30,9 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(PaginatorInterface $paginator, Request $request, SessionInterface $sessionInterface): Response
     {
+        if ($this->getUser() === null) {
+            return $this->redirectToRoute('auth_oauth_login');
+        }
         $users = $this->userRepository->findAll();
         $produits = $this->produitRepository->findAll();
         $prets = $this->pretRepository->findAll();

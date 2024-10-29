@@ -3,7 +3,7 @@
         <div class="relative bg-white flex w-full items-center px-5 py-2.5 dark:bg-[#0e1726]">
             <div class="horizontal-logo flex lg:hidden justify-between items-center ltr:mr-2 rtl:ml-2">
                 <a href="/" class="main-logo flex items-center shrink-0">
-                    <img class="w-8 ltr:-ml-1 rtl:-mr-1 inline" src="{{ asset('assets/images/logo.svg') }} "
+                    <img width="60vw" src="{{ asset('assets/images/paon.png') }} "
                         alt="image" />
                 </a>
 
@@ -173,7 +173,7 @@
                                             </div>
                                         </h4>
                                     {% else %}
-                                        <a href="{{ path('app_login') }}">Se connecter</a>
+                                        <a href="{{ path('auth_oauth_login') }}">Se connecter</a>
                                     {% endif %}
                                 </div>
                             </div>
@@ -222,7 +222,7 @@
                                 Se déconnecter
                             </a>
                         {% else %}
-                            <a href="{{ path('app_login') }}">Se connecter</a>
+                            <a href="{{ path('auth_oauth_login') }}">Se connecter</a>
                         {% endif %}
                         </li>
                     </ul>

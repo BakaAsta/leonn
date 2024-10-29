@@ -42,7 +42,7 @@ class AzureController extends AbstractController
     #[Route('/azure', name: 'app_azure_index')]
     public function index(): RedirectResponse
     {
-        return $this->redirectToRoute('app_login');
+        return $this->redirectToRoute('auth_oauth_login');
     }
 
     #[Route('/azure/auth', name: 'connect_azure_start')]
