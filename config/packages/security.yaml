@@ -47,7 +47,8 @@ security:
                 path: /
                 always_remember_me: true
             custom_authenticators:
-                - App\Security\GoogleAuthenticator
+            - App\Security\GithubAuthenticator
+            - App\Security\GoogleAuthenticator
      
     access_control:
         - { path: ^/docs, roles: PUBLIC_ACCESS } # Allows accessing API documentations and Swagger UI docs

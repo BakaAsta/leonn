@@ -63,6 +63,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $google_id = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $github_id = null;
+
     public function __construct()
     {
         $this->prets = new ArrayCollection();
@@ -185,6 +188,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setGoogleId(?string $google_id): static
     {
         $this->google_id = $google_id;
+
+        return $this;
+    }
+
+    public function getGithubId(): ?string
+    {
+        return $this->github_id;
+    }
+
+    public function setGithubId(?string $github_id): static
+    {
+        $this->github_id = $github_id;
 
         return $this;
     }
