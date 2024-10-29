@@ -46,21 +46,24 @@ security:
                 lifetime: 604800
                 path: /
                 always_remember_me: true
+            custom_authenticators:
+                - App\Security\GoogleAuthenticator
      
     access_control:
-        - { path: ^/docs, roles: PUBLIC_ACCESS } # Allows accessing API documentations and Swagger UI docs
-        - { path: ^/auth, roles: PUBLIC_ACCESS } 
-        - { path: ^/login, roles: PUBLIC_ACCESS } # Allows accessing the login page
-        - { path: ^/register, roles: PUBLIC_ACCESS } # Allows accessing the register page
-        - { path: ^/api/, roles: IS_AUTHENTICATED_FULLY } # Allows accessing the API for admins only
-        - { path: ^/api/(login|token/refresh), roles: PUBLIC_ACCESS }
-        - { path: ^/api/, roles: IS_AUTHENTICATED_FULLY } # Allows accessing the API for everyone who is connected
-        - { path: ^/register, roles: PUBLIC_ACCESS }
-        - { path: ^/azure,  roles: PUBLIC_ACCESS}
-        - {path: ^/produit, roles: ROLE_USER}
-        - {path: ^/logout, roles: ROLE_USER}
-        - {path: ^/listePrets/user, roles: ROLE_USER}
-        - { path: ^/, roles: ROLE_ADMIN }
+#        - { path: ^/docs, roles: PUBLIC_ACCESS } # Allows accessing API documentations and Swagger UI docs
+#        - { path: ^/auth, roles: PUBLIC_ACCESS }
+#        - { path: ^/login, roles: PUBLIC_ACCESS } # Allows accessing the login page
+#        - { path: ^/register, roles: PUBLIC_ACCESS } # Allows accessing the register page
+#        - { path: ^/api/, roles: IS_AUTHENTICATED_FULLY } # Allows accessing the API for admins only
+#        - { path: ^/api/(login|token/refresh), roles: PUBLIC_ACCESS }
+#        - { path: ^/api/, roles: IS_AUTHENTICATED_FULLY } # Allows accessing the API for everyone who is connected
+#        - { path: ^/register, roles: PUBLIC_ACCESS }
+#        - { path: ^/azure,  roles: PUBLIC_ACCESS}
+#        - {path: ^/auth, roles: PUBLIC_ACCESS}
+#        - {path: ^/produit, roles: ROLE_USER}
+#        - {path: ^/logout, roles: ROLE_USER}
+#        - {path: ^/listePrets/user, roles: ROLE_USER}
+#        - { path: ^/, roles: ROLE_ADMIN }
 
 
 when@test:
