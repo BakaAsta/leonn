@@ -42,7 +42,7 @@
                                     <img src="assets/images/auth/ecira.png" alt="Logo" class="w-full" />
                                 </div>
                             </div>
-                            <div class="w-full max-w-[440px] lg:mt-16">
+                            <div class="w-full max-w-[440px] lg:mt-16 space-y-4">
                                 {% if error %}
                                     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                                 {% endif %}
@@ -153,13 +153,6 @@
                                     </div>
 
                                 </form>
-
-
-                                <div class="relative my-7 text-center md:mb-9">
-                                    <span class="absolute inset-x-0 top-1/2 h-px w-full -translate-y-1/2 bg-white-light dark:bg-white-dark"></span>
-                                    <span class="relative bg-white px-2 font-bold uppercase text-white-dark dark:bg-dark dark:text-white-light">Ou</span>
-                                </div>
-
                                 <div class="text-center dark:text-white">
                                     Pas encore de compte ?
                                     <a
