@@ -83,7 +83,6 @@ abstract class AbstractOauthAuthentificator extends OAuth2Authenticator
     protected function getRessourceOwnerFromCredentials(AccessToken $credentials): ResourceOwnerInterface
     {
         return $this->getClient()->fetchUserFromToken($credentials);
-
     }
 
     public function getClient(): OAuth2ClientInterface

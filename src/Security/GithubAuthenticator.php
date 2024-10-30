@@ -12,7 +12,7 @@ class GithubAuthenticator extends AbstractOauthAuthentificator
 {
     protected string $serviceName = 'github';
 
-        public function getUserFromResourceOwner(ResourceOwnerInterface $resourceOwner, UserRepository $repository): User
+        public function getUserFromResourceOwner(ResourceOwnerInterface $resourceOwner, UserRepository $repository): ?User
         {
             if (!$resourceOwner instanceof GithubResourceOwner) {
                 throw new \InvalidArgumentException('expecting github user');

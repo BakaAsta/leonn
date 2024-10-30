@@ -23,6 +23,7 @@ readonly class OauthRegistrationService
             $resourceOwner instanceof GoogleUser => (new User())
             ->setEmail($resourceOwner->getEmail())
             ->setGoogleId($resourceOwner->getId()),
+//            mon user ne match pas avec une githubUser
             $resourceOwner instanceof GithubResourceOwner => (new User())
             ->setEmail($resourceOwner->getEmail())
             ->setGithubId($resourceOwner->getId()),
