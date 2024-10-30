@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
+use League\OAuth2\Client\Provider\GithubResourceOwner;
 use League\OAuth2\Client\Provider\GoogleUser;
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 
@@ -22,9 +23,10 @@ readonly class OauthRegistrationService
             $resourceOwner instanceof GoogleUser => (new User())
             ->setEmail($resourceOwner->getEmail())
             ->setGoogleId($resourceOwner->getId()),
-//            $resourceOwner instanceof GithubUser => (new User())
-//            ->setEmail($resourceOwner->getEmail())
-//            ->setGithubId($resourceOwner->getId()),
+//            mon user ne match pas avec une githubUser
+            $resourceOwner instanceof GithubResourceOwner => (new User())
+            ->setEmail($resourceOwner->getEmail())
+            ->setGithubId($resourceOwner->getId()),
         };
         $this->repository->addUser($user, true);
         return $user;

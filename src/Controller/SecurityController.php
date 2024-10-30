@@ -16,6 +16,7 @@ class SecurityController extends AbstractController
 
     public const SCOPES = [
         'google' => [],
+        'github' => [],
     ];
 
     #[Route(path: '/login', name: 'auth_oauth_login')]
