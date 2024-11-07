@@ -69,7 +69,7 @@ abstract class AbstractOauthAuthentificator extends OAuth2Authenticator
 
         if ($user === null) {
 //            crée un user
-            $this->registrationService->persist($resourceOwner);
+            $user = $this->registrationService->persist($resourceOwner);
         }
 
         return new SelfValidatingPassport(
